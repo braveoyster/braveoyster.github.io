@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Tag: Rime,鼠须管,weasel,小狼毫,中州韵,deploy,sync,win8 输入法 | 窅山</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta content="website" property="og:type">
+<meta content="窅山" property="og:title">
+<meta content="http://braveoyster.github.io/tags/Rime,鼠须管,weasel,小狼毫,中州韵,deploy,sync,win8 输入法/" property="og:url">
+<meta property="og:image">
+<meta content="窅山" property="og:site_name">
+<meta property="og:description">
+<meta content="summary" name="twitter:card">
+  
+    <link rel="alternative" href="/atom.xml" title="窅山" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">窅山</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">胸中有丘壑 何妨对圣贤</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://braveoyster.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Win8下Rime输入法无法同步的临时解决方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/06/12/Win8下Rime输入法无法同步的临时解决方法/" class="article-date">
+  <time datetime="2014-06-12T04:41:57.000Z" itemprop="datePublished">Jun 12 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/06/12/Win8下Rime输入法无法同步的临时解决方法/">Win 8下Rime输入法无法同步的临时解决方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>意外发现了Rime输入法(OS X上叫鼠须管’Squirrel’，windows上叫小狼毫’Weasel’，linux上叫中州韵’ibus-rime’，连名字都起的这么牛逼)，真是神器啊，流畅的速度，灵活的配置，各个os上一致的体验，正是我想要的，非常喜欢。。。</p>
+<p>我在公司用的是windows 8，自己用的是mac，需要在每个os上同步一些自己习惯的输入字和词，如何同步，Rime的wiki上有很详细的说明，比较简单，就是利用Dropbox，设置Rime的同步目录为Dropbox中，在mac上设置很简单就完成了，Rime输入法虽然可以安装在win 8下，但对Win 8支持的不好(Metro模式暂时无解)，在输入法的设置中，那个’选项’点了是没有任何反应的，所以就没有办法deploy然后sync设置，查了wiki也没有找到有用的信息，后来想到查看源码，找到了<a href="https://github.com/lotem/weasel/blob/develop/output/install.nsi#L179" target="_blank">安装文件</a></p>
+<pre><code>    ; Optional section (can be disabled by the user)
+    Section <span class="string">"Start Menu Shortcuts"</span>
+      SetShellVarContext all
+      CreateDirectory <span class="string">"<span class="variable">$SMPROGRAMS</span>\小狼毫輸入法"</span>
+      CreateShortCut <span class="string">"<span class="variable">$SMPROGRAMS</span>\小狼毫輸入法\【小狼毫】說明書.lnk"</span> <span class="string">"<span class="variable">$INSTDIR</span>\README.txt"</span>
+      CreateShortCut <span class="string">"<span class="variable">$SMPROGRAMS</span>\小狼毫輸入法\【小狼毫】輸入法設定.lnk"</span> <span class="string">"<span class="variable">$INSTDIR</span>\WeaselDeployer.exe"</span> <span class="string">""</span> <span class="string">"<span class="variable">$SYSDIR</span>\shell32.dll"</span> <span class="number">21</span>
+      CreateShortCut <span class="string">"<span class="variable">$SMPROGRAMS</span>\小狼毫輸入法\【小狼毫】用戶詞典管理.lnk"</span> <span class="string">"<span class="variable">$INSTDIR</span>\WeaselDeployer.exe"</span> <span class="string">"/dict"</span> <span class="string">"<span class="variable">$SYSDIR</span>\shell32.dll"</span> <span class="number">6</span>
+      CreateShortCut <span class="string">"<span class="variable">$SMPROGRAMS</span>\小狼毫輸入法\【小狼毫】用戶資料同步.lnk"</span> <span class="string">"<span class="variable">$INSTDIR</span>\WeaselDeployer.exe"</span> <span class="string">"/sync"</span> <span class="string">"<span class="variable">$SYSDIR</span>\shell32.dll"</span> <span class="number">26</span>
+      CreateShortCut <span class="string">"<span class="variable">$SMPROGRAMS</span>\小狼毫輸入法\【小狼毫】重新部署.lnk"</span> <span class="string">"<span class="variable">$INSTDIR</span>\WeaselDeployer.exe"</span> <span class="string">"/deploy"</span> <span class="string">"<span class="variable">$SYSDIR</span>\shell32.dll"</span> <span class="number">144</span>
+      CreateShortCut <span class="string">"<span class="variable">$SMPROGRAMS</span>\小狼毫輸入法\小狼毫算法服務.lnk"</span> <span class="string">"<span class="variable">$INSTDIR</span>\WeaselServer.exe"</span> <span class="string">""</span> <span class="string">"<span class="variable">$INSTDIR</span>\WeaselServer.exe"</span> <span class="number">0</span>
+      CreateShortCut <span class="string">"<span class="variable">$SMPROGRAMS</span>\小狼毫輸入法\【小狼毫】用戶文件夾.lnk"</span> <span class="string">"<span class="variable">$INSTDIR</span>\WeaselServer.exe"</span> <span class="string">"/userdir"</span> <span class="string">"<span class="variable">$SYSDIR</span>\shell32.dll"</span> <span class="number">126</span>
+      CreateShortCut <span class="string">"<span class="variable">$SMPROGRAMS</span>\小狼毫輸入法\【小狼毫】程序文件夾.lnk"</span> <span class="string">"<span class="variable">$INSTDIR</span>\WeaselServer.exe"</span> <span class="string">"/weaseldir"</span> <span class="string">"<span class="variable">$SYSDIR</span>\shell32.dll"</span> <span class="number">19</span>
+      CreateShortCut <span class="string">"<span class="variable">$SMPROGRAMS</span>\小狼毫輸入法\【小狼毫】檢查新版本.lnk"</span> <span class="string">"<span class="variable">$INSTDIR</span>\WeaselServer.exe"</span> <span class="string">"/update"</span> <span class="string">"<span class="variable">$SYSDIR</span>\shell32.dll"</span> <span class="number">13</span>
+      <span class="variable">${If}</span> <span class="variable">${RunningX64}</span>
+        CreateShortCut <span class="string">"<span class="variable">$SMPROGRAMS</span>\小狼毫輸入法\【小狼毫】安裝選項.lnk"</span> <span class="string">"<span class="variable">$INSTDIR</span>\WeaselSetupx64.exe"</span> <span class="string">""</span> <span class="string">"<span class="variable">$SYSDIR</span>\shell32.dll"</span> <span class="number">162</span>
+      <span class="variable">${Else}</span>
+        CreateShortCut <span class="string">"<span class="variable">$SMPROGRAMS</span>\小狼毫輸入法\【小狼毫】安裝選項.lnk"</span> <span class="string">"<span class="variable">$INSTDIR</span>\WeaselSetup.exe"</span> <span class="string">""</span> <span class="string">"<span class="variable">$SYSDIR</span>\shell32.dll"</span> <span class="number">162</span>
+      <span class="variable">${EndIf}</span>
+      CreateShortCut <span class="string">"<span class="variable">$SMPROGRAMS</span>\小狼毫輸入法\卸載小狼毫.lnk"</span> <span class="string">"<span class="variable">$INSTDIR</span>\uninstall.exe"</span> <span class="string">""</span> <span class="string">"<span class="variable">$INSTDIR</span>\uninstall.exe"</span> <span class="number">0</span>
+
+    SectionEnd
+</code></pre><p>写的很清楚了，只要执行WeaselDeployer.exe 加上参数即可<br>这只是临时的解决方法，期待Rime出新的版本支持win8和metro风格就不会这么麻烦了</p>
+<p><strong> 这种方法也有缺点，有时dropbox同步没有那么及时，但如果是上下班之间的同步肯定没问题 </strong></p>
+<p><strong> 注: Rime输入法的词库并不是特别的完善，有时比较常用的词并没有，也许这也是该输入法很快的原因 </strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://braveoyster.github.io/2014/06/12/Win8下Rime输入法无法同步的临时解决方法/" data-id="qh34lft3q2yemz27" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rime,鼠须管,weasel,小狼毫,中州韵,deploy,sync,win8 输入法/">Rime,鼠须管,weasel,小狼毫,中州韵,deploy,sync,win8 输入法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2019,flag/">2019,flag</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rime,鼠须管,weasel,小狼毫,中州韵,deploy,sync,win8 输入法/">Rime,鼠须管,weasel,小狼毫,中州韵,deploy,sync,win8 输入法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular,backbone,emberjs/">angular,backbone,emberjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/electron/">electron</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js, format/">js, format</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodegyp,msb8020/">nodegyp,msb8020</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/osx,terminal,alias,symlinks,cd,别名,别名目录/">osx,terminal,alias,symlinks,cd,别名,别名目录</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/热玩/">热玩</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2019,flag/" style="font-size: NaNpx;">2019,flag</a><a href="/tags/Rime,鼠须管,weasel,小狼毫,中州韵,deploy,sync,win8 输入法/" style="font-size: NaNpx;">Rime,鼠须管,weasel,小狼毫,中州韵,deploy,sync,win8 输入法</a><a href="/tags/angular,backbone,emberjs/" style="font-size: NaNpx;">angular,backbone,emberjs</a><a href="/tags/electron/" style="font-size: NaNpx;">electron</a><a href="/tags/js, format/" style="font-size: NaNpx;">js, format</a><a href="/tags/nodegyp,msb8020/" style="font-size: NaNpx;">nodegyp,msb8020</a><a href="/tags/osx,terminal,alias,symlinks,cd,别名,别名目录/" style="font-size: NaNpx;">osx,terminal,alias,symlinks,cd,别名,别名目录</a><a href="/tags/热玩/" style="font-size: NaNpx;">热玩</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05">May 2014</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/19/2019立个Flag/">2019立个Flag</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/21/gou-pi-dao-zao/">狗皮倒灶</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/06/Electron-Atom-Shell-install/">解决Electron(Atom Shell)安装慢的问题</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/05/在windows上nodegyp编译出现错误MSB8020的解决办法/">在windows上nodegyp编译出现错误MSB8020的解决办法</a>
+          </li>
+        
+          <li>
+            <a href="/2014/08/25/angularjs-backbonejs-emberjs-对比/">AngularJS Backbone.js Ember.js 对比</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Ryan Liu<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script type="text/javascript" src="/js/script.js"></script>
+  </div>
+</body>
+</html>
